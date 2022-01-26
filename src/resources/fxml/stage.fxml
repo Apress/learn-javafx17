@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<?language javascript?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+
+<Stage title="Some Stage">
+  <scene>
+    <Scene>
+      <VBox xmlns:fx="http://javafx.com/fxml">
+        <children>
+          <Label text="John Doe"/>
+        </children>
+      </VBox>
+    </Scene>
+  </scene>
+</Stage>

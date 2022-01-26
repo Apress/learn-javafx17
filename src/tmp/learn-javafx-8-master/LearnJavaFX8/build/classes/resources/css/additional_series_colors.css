@@ -1,0 +1,8 @@
+/* additional_series_colors.css */
+.chart-pie.default-color8 {
+	-fx-pie-color: gold;
+}
+
+.chart-pie.default-color9 {
+	-fx-pie-color: khaki;
+}

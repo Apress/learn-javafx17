@@ -1,0 +1,17 @@
+// pie_slice.css
+/* Set a background image for pie slices */
+.chart-pie.data0 {-fx-background-image: url("china_flag.jpg");}
+.chart-pie.data1 {-fx-background-image: url("india_flag.jpg");}
+.chart-pie.data2 {-fx-background-image: url("brazil_flag.jpg");}
+.chart-pie.data3 {-fx-background-image: url("uk_flag.jpg");}
+.chart-pie.data4 {-fx-background-image: url("usa_flag.jpg");}
+
+/* Set the preferred size for legend symbols */
+.chart-legend-item-symbol {
+	-fx-pref-width: 100;
+	-fx-pref-height: 30;
+}
+
+.chart {
+	-fx-label-line-length: 10;
+}

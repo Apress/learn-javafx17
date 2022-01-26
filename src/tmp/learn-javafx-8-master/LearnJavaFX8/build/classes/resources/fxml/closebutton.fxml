@@ -1,0 +1,13 @@
+<!-- closebutton.fxml -->
+<?language javascript?>
+<?import javafx.scene.control.Button?>
+<Button fx:controller="com.jdojo.fxml.CloseBtnController" text="Close" fx:id="closeBtn" onAction="closeWindow()" xmlns:fx="http://javafx.com/fxml">
+	<fx:script>
+		function closeWindow() {
+			var scene = closeBtn.getScene();
+			if (scene != null) {
+				scene.getWindow().hide();
+			}
+		}
+	</fx:script>
+</Button>

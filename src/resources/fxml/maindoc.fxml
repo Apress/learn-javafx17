@@ -1,0 +1,10 @@
+<!-- maindoc.fxml -->
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox fx:controller="com.jdojo.fxml.MainDocController" xmlns:fx="http://javafx.com/fxml">	
+	<Label text="Testing fx:include"/>
+
+	<!-- Override the text property of the included Button -->
+	<fx:include source="closebutton.fxml" fx:id="includedCloseBtn" text="Hide"/>
+</VBox>

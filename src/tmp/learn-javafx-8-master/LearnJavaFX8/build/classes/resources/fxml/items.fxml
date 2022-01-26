@@ -1,0 +1,8 @@
+<!-- items.fxml -->
+<?import com.jdojo.fxml.Item?>
+<?import java.util.ArrayList?>
+<ArrayList>
+	<Item name="Kishori" id="100"/>	
+	<Item name="Ellen" id="200"/>
+	<Item name="Kannan" id="300"/>	
+</ArrayList>

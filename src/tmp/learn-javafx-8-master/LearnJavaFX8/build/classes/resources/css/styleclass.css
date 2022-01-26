@@ -1,0 +1,14 @@
+.hbox {
+	-fx-border-color: blue;
+	-fx-border-width: 2px;
+	-fx-border-radius: 5px;
+	-fx-border-insets: 5px;
+	-fx-padding: 10px;
+	-fx-spacing: 5px;
+	-fx-background-color: lightgray;
+	-fx-background-insets: 5px;
+} 
+ 
+.button {
+	-fx-text-fill: blue;
+}

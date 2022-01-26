@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?language javascript?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml">	
+	<Label fx:id="msgLbl" text="FXML is cool!" prefWidth="150"/>
+	<Button fx:id="sayHelloBtn" text="Say Hello" onAction="sayHello()"/>		<style>
+		-fx-padding: 10;
+		-fx-border-style: solid inside;
+		-fx-border-width: 2;
+		-fx-border-insets: 5;
+		-fx-border-radius: 5;
+		-fx-border-color: blue;
+	</style>	
+	<fx:script>		
+		function sayHello() {
+			msgLbl.setText("Hello from FXML!");
+		}
+	</fx:script>	
+</VBox>

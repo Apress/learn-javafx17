@@ -1,0 +1,56 @@
+<!-- jshandlers.html -->
+<html>
+<head>
+<title>Browsing Web Pages Using Jqva FX WebView</title>
+<script type="text/javascript">
+	function promptUser() {
+		var userMsg = window.prompt("Please enter a message:","Your message");
+		document.getElementById("prompt_msg").innerHTML= userMsg;
+	}
+		
+	function showPopup() {
+		window.open("http://www.oracle.com");
+	}
+		
+	function showAlert() {
+		window.alert("This is an alert!");
+	}
+		
+	function showConfirm() {
+		var userResponse = window.confirm("Are you sure you want to learn FX?");
+		if (userResponse == true) {
+			document.getElementById("confirm_msg").innerHTML = "You pressed OK.";
+		}
+		else {
+		document.getElementById("confirm_msg").innerHTML = "You pressed Cancel.";
+		}
+	}		
+	</script>
+</head>
+<body>
+	<h1>Using a WebView node to view webpages in JavaFX</h1>
+	
+	<p>Go to: <a href="http://www.yahoo.com">Yahoo!</a> &nbsp; &nbsp;
+	<a href="http://www.google.com">Google</a> &nbsp; &nbsp;
+	<a href="http://www.oracle.com">Oracle</a> <br/><br/>
+	
+	<b>Your message:</b> <span id="prompt_msg" style="color:red;"></span> 
+	<input type="button" name="prompt_btn" value="Enter a Message" onclick="promptUser()"/>
+		
+	<p>Let us try showing a confirmation window. <span id="confirm_msg" style="color:red;"></span> 
+	<input type="button" name="confirm_btn" value="Show a Confirmation Dialog" onclick="showConfirm()"/>
+	</p>
+	
+	<p>Let us try using a popup window.
+	<input type="button" name="popup_btn" value="Show a Popup" onclick="showPopup()"/>
+	</p>
+		
+	<p>Let us try showing an alert. 
+		<input type="button" name="popup_btn" value="Show an Alert"  onclick="showAlert()"/>
+	</p>
+	
+	<p>Let us try showing current date in the status bar
+	<input type="button" name="status_btn" value="Show Current Date"  onclick="window.status=new Date()"/>
+	</p>
+</body>
+</html>

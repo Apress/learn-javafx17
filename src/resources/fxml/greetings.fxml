@@ -1,0 +1,2 @@
+<?import javafx.scene.control.Label?>
+<Label text="%greetingText"/>

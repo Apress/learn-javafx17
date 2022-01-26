@@ -1,0 +1,29 @@
+<!-- javafx_to_javascript.html -->
+<html>
+<head>
+<title>JavaFX to JavaSCript</title>
+	<script type="text/javascript">
+		function showTime() {
+			var currDt = new Date();
+			var localTime = currDt.toLocaleTimeString();
+			document.getElementById("current_time").innerHTML = localTime;
+		}
+		
+		function startShowingTime() {
+			// Update the time every second
+			var timerId = window.setInterval(showTime, 1000); 
+			return timerId;
+		}
+		
+		function stopShowingTime(timerId) {			
+			window.clearInterval(timerId);
+			document.getElementById("current_time").innerHTML = "";
+		}		
+	</script>
+</head>
+<body>
+	<h1>Executing JavaScript Code from JavaFX</h1>
+		
+	<p>Current Time: <b><span id="current_time" style="color:blue;"></span></b></p>
+</body>
+</html>

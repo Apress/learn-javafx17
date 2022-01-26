@@ -1,0 +1,9 @@
+<?import com.jdojo.fxml.Item?>
+<?import javafx.scene.paint.Color?>
+
+<java.util.ArrayList xmlns:fx="http://javafx.com/fxml">
+	<Item name="Kishori" id="100"/>	
+	<Item name="Ellen" id="200"/>
+	<Item name="Kannan" id="300"/>
+	<Color red="0.9" green="0.0" blue="0.3"/>
+</java.util.ArrayList>

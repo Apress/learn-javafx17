@@ -1,0 +1,26 @@
+<!-- javascript_to_javafx.html -->
+<html>
+<head>
+<title>JavaSCript to JavaFX</title>
+	<script type="text/javascript">
+		function addNumbers() {
+			var n1 = Number(document.adder_form.num1.value);
+			var n2 = Number(document.adder_form.num2.value);
+			
+			// Call the JavaFX method to add two numbers
+			var n3 = window.fxAdder.add(n1, n2);
+			document.adder_form.sum.value = n3;
+		}
+	</script>
+</head>
+<body>
+	<h1>Executing JavaScript Code from JavaFX</h1>	
+	Enter two numbers and click the Add button to add them.
+	<form name="adder_form">
+		Number-1: <input type="number" name="num1" value="20" /> <br/>
+		Number-2: <input type="number" name="num2" value="80" /> <br/>
+		Sum from JavaFX: <input type="number" name="sum" disabled />
+		<input type="button" name="add_btn" value="Add" onClick="addNumbers();"/>
+	</form>	
+</body>
+</html>
