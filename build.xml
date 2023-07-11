@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="LearnJavaFX17" basedir="." default="build">
+  <property environment="env" />
+
+  <property name="build.compiler" value="javac1.8" />
+  <property name="targetJarFile" value="${basedir}/LearnJavaFX.jar"/>
+  <property name="tstAppJarFile" value="${basedir}/TstAppCfg.jar"/>
+
+  <property name="javaFXLibVer" value="17.0.6" />
+
+  <property name="docDir" value="${basedir}/javadoc"/>
+  <property name="buildDir" value="${basedir}/build"/>
+  <property name="classesDir" value="${buildDir}/classes"/>
+  <property name="javaFXLibDir" value="${basedir}/../javafx-sdk-17.0.6/lib" />
+  <property name="compileLogFile" value="${basedir}/compiler.log"/>
+
+  <property name="test_dir" value="${basedir}/tests" />
+  <property name="test_class_dir" value="${buildDir}/tests/classes" />
+  <property name="test_report_dir" value="${basedir}/reports" />
+  <property name="test_libs.location" value="${basedir}/libs/test_only" />
+
+  <path id="classpath.test">
+    <pathelement location="${test_libs.location}/junit-4.11.jar" />
+    <pathelement location="${classesDir}" />
+    <pathelement location="${gsonLib}/" />
+  </path>
+
+  <path id="modulepath">
+    <pathelement location="${javaFXLibDir}" />
+  </path>
+
+  <path id="classpath">
+    <pathelement location="${classesDir}" />
+  </path>
+
+  <path id="sources">
+    <fileset dir="${basedir}/src" >
+      <include name="**/*.java" />
+    </fileset>
+  </path>
+
+  <target name="init">
+    <mkdir dir="${classesDir}"/>
+  </target>
+
+  <target name="tstclean">
+    <echo message="Running ant 'tstclean' on ${ant.file}"/>
+    <delete includeEmptyDirs="true" quiet="true">
+      <fileset dir="${test_report_dir}" />
+    </delete>
+  </target>
+  
+  <target name="clean" depends="tstclean">
+    <echo message="Running ant 'clean' on ${ant.file}"/>
+    <delete includeEmptyDirs="true" quiet="true">
+      <fileset dir="${docDir}" />
+      <fileset dir="${classesDir}" />
+      <fileset dir="${test_report_dir}" />
+      <fileset file="${targetJarFile}"/>
+      <fileset file="${compileLogFile}"/>
+    </delete>
+  </target>
+  
+  <target name="compile" depends="init" >
+    <record name="${compileLogFile}" action="start" />
+    <javac destdir="${classesDir}" includeantruntime="false"
+           verbose="false" debug="on" compiler="${build.compiler}" >
+      <modulepath refid="modulepath" />
+      <src path="${basedir}/src"/>
+    </javac>
+    <record name="${compileLogFile}" action="stop" />
+  </target>
+
+  <target name="javadoc" depends="init" >
+    <mkdir dir="${docDir}"/>
+    <javadoc packagenames="com.advantest.ochocfg" 
+	           sourcepath="${basedir}/src"
+	           destdir="${docDir}" >
+      <classpath refid="classpath" />
+    </javadoc>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <jar destfile="${targetJarFile}">
+      <fileset dir="${classesDir}" />
+      <zipgroupfileset dir="${javaFXLibDir}" includes="**/*.jar" 
+                       excludes="**/test_only/**/*.jar **/javafx-sdk-19/**/*.jar" />
+      <!-- <path refid="sources" /> -->
+      <manifest>
+        <attribute name="Class-Path" value="./${gsonLibVer}" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="compile_tests" depends="compile">
+    <mkdir dir="${test_class_dir}" />
+    <javac srcdir="${test_dir}" destdir="${test_class_dir}" includeantruntime="false">
+      <classpath refid="classpath.test" />
+      <compilerarg line="-encoding UTF-8" />
+    </javac>
+  </target>
+
+  <!-- Run jUnit -->
+  <target name="test" depends="tstclean,jar,compile_tests">
+    <mkdir dir="${test_report_dir}" />
+    <junit fork="off" printsummary="withOutAndErr" haltonfailure="off" showoutput="true" >
+
+      <classpath refid="classpath.test" />
+      <classpath location="${test_class_dir}" />
+
+      <formatter type="plain" />
+      <batchtest fork="no" todir="${test_report_dir}">
+        <fileset dir="${test_dir}">
+          <include name="**/*Test*.java" />
+        </fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <!-- Run class (don't specify "com.jdojo" on command line) -->
+  <!-- Class to run is specified with -Dclass="..." on ant command line -->
+  <!-- Note: we set 'fork="true"' because otherwise the jvmarg line would be ignored -->
+  <target name="run" depends="compile" >
+    <java classname="com.jdojo.${class}"
+          classpathref="classpath"
+          modulepath="${javaFXLibDir}" 
+          fork="true" >
+      <jvmarg line="--add-modules javafx.graphics,javafx.controls,javafx.swing,javafx.media,javafx.web,javafx.fxml" />
+    </java>
+  </target>
+
+  <target name="build" depends="clean,jar" >
+  </target>
+
+  <target name="all" depends="clean,compile,jar,compile_tests,test">
+  </target>
+
+</project>
