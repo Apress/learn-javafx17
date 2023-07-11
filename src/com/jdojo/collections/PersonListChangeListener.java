@@ -50,7 +50,7 @@ public class PersonListChangeListener implements ListChangeListener<Person> {
 	public void handleReplaced(ListChangeListener.Change<? extends Person> change) {
 		System.out.println("Change Type: Replaced");
 
-		// A "replace" is the same as a “remove” followed with an "add"
+		// A "replace" is the same as a "remove" followed with an "add"
 		handleRemoved(change);
 		handleAdded(change);
 	}	
